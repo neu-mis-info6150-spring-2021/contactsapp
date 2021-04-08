@@ -1,0 +1,1 @@
+export const ADD_CONTACT = '[Contact] Add Contact';

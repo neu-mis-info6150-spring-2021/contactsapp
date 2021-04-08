@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './NewContact.scss';
+import { addContact } from './../../store/actions/contact.actions';
 
-class NewContact extends React.Component {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        add: contact => dispatch(addContact(contact))
+    }
+}
+class ConnectedNewContact extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,8 +17,8 @@ class NewContact extends React.Component {
 
     clickHandler(event) {
         event.preventDefault();
-        const newContact = document.getElementById('name-input').value;
-        this.props.add(newContact);
+        const name = document.getElementById('name-input').value;
+        this.props.add({ name });
     }
 
     render() {
@@ -25,5 +32,6 @@ class NewContact extends React.Component {
         );
     }
 }
+const NewContact = connect(null, mapDispatchToProps)(ConnectedNewContact);
 
 export default NewContact;
