@@ -1,5 +1,5 @@
 export default [
-    { name: "John", isEnabled: true },
-    { name: "David", isEnabled: false },
-    { name: "Adam", isEnabled: false }
+    { id: 1, name: "John", isEnabled: true },
+    { id: 2, name: "David", isEnabled: true },
+    { id: 3, name: "Adam", isEnabled: false }
 ]

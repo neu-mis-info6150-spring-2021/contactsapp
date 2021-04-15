@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+    Link
+} from 'react-router-dom';
 
 import './ContactList.scss';
 import { getEnabledContacts } from './../../store/selectors/contact.selectors';
@@ -14,7 +17,19 @@ class ConnectedContactList extends React.Component {
     }
 
     render() {
-        const contacts = this.props.contacts.map((c, i) => <li key={i}>{c.name}</li>);
+        const search = this.props.query.get('search');
+        const contacts = this.props.contacts
+            // Do search if search query parameter available
+            .filter(c => !search || (search && c.name === search))
+            // Map contacts to Links
+            .map((c, i) => {
+                const path = `/contacts/${c.id}`;
+                return (
+                    <li key={i}>
+                        <Link to={path}>{c.name}</Link>
+                    </li>
+                )
+            });
         return (
             <ul>
                 {contacts}
