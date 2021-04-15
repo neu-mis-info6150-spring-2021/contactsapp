@@ -34,18 +34,18 @@ class App extends React.Component {
         </nav>
         <div className="fluid-container">
           <div>
-            <span><Link to="/list">List</Link></span>
+            <span><Link to="/contacts">Contacts</Link></span>
             <span>&nbsp;</span>
-            <span><Link to="/new">New</Link></span>
+            <span><Link to="/contacts/new">Add New</Link></span>
           </div>
           <Switch>
-            <Route path="/list" render={(props)=>{
+            <Route exact path="/contacts" render={(props)=>{
               const query = new URLSearchParams(props.location.search);
               return (
                 <ContactList query={query} />
               );
             }} />
-            <Route path="/new">
+            <Route exact path="/contacts/new">
               <NewContact />
             </Route>
             <Route path="/contacts/:id"  render={(props)=>(<Contact {...props.match.params} />)} />
